@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;1,200&family=Montserrat:ital,wght@0,300;1,100&family=Saira:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Encriptador de Texto</title>
+    
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <div class="contenedor-encriptar">
+            <div class="encriptar_texto">
+                <h1>Encriptados</h1>
+                <p> El sitio web que te ayuda a ocultar tus secretos...</p>    
+                <input class="texto_input" type="text" placeholder="Escribe tu secereto">
+            </div>
+            <div class="encriptar_botones">
+                <button class="encriptar">Encriptar</button>
+                <button class="desencriptar">Desencriptar</button>
+            </div>
+            
+        </div>
+        
+        <div class="contenedor-rectangulo">
+            <div class="rectangulo_resultado">
+                <div class="resultado_contenedor">
+                    <p class="text-resultado"></p>
+                </div>
+                
+                <div class="resultado-img">
+                    <img id="img" src="Muñeco.png" alt="">
+                </div>
+                <div class="resultado-texto">
+                    <p id="texto">Ningun mensaje fue encontrado</p>
+                    <p id="texto2" >Ingrese el texto que quiere encriptar o desencriptar</p>
+                </div>
+                
+            </div>
+            <div class="rectangulo_boton">
+                <button id="botonCopiar" class="copiar" type="button">Copiar</button>
+            
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <script>
+
+        var input = document.querySelector("input");
+        var botonEncriptar = document.querySelector(".encriptar");
+        var botonDesencriptar = document.querySelector(".desencriptar")
+        var botoncopiar = document.querySelector(".copiar")
+        var textResultado = document.querySelector(".text-resultado")
+        
+
+        function encriptar () {
+            var texto = input.value.toLowerCase();
+            
+            var textoEncriptado = texto.replace(/e/igm,"enter");
+            var textoEncriptado = textoEncriptado.replace(/i/igm,"imes")
+            var textoEncriptado = textoEncriptado.replace(/a/igm,"ai")
+            var textoEncriptado = textoEncriptado.replace(/o/igm,"ober")
+            var textoEncriptado = textoEncriptado.replace(/u/igm,"ufat")
+
+            document.getElementById("img").style.display = "none";
+            document.getElementById("texto").style.display = "none";
+            document.getElementById("texto2").style.display = "none";
+            document.getElementById("botonCopiar").style.display = "show";
+            document.getElementById("botonCopiar").style.display = "inherit";
+
+             textResultado.textContent = textoEncriptado
+        }
+
+        botonEncriptar.onclick = encriptar;
+        
+        function desencriptar () {
+            var texto = input.value.toLowerCase();
+            
+            var textoDesencriptado = texto.replace(/enter/igm,"e");
+            var textoDesencriptado = textoDesencriptado.replace(/imes/igm,"i")
+            var textoDesencriptado = textoDesencriptado.replace(/ai/igm,"a")
+            var textoDesencriptado = textoDesencriptado.replace(/ober/igm,"o")
+            var textoDesencriptado = textoDesencriptado.replace(/ufat/igm,"u")
+
+            document.getElementById("img").style.display = "none";
+            document.getElementById("texto").style.display = "none";
+            document.getElementById("texto2").style.display = "none";
+            document.getElementById("botonCopiar").style.display = "show";
+            document.getElementById("botonCopiar").style.display = "inherit";
+
+            textResultado.textContent = textoDesencriptado
+
+        }
+
+        botonDesencriptar.onclick = desencriptar;
+
+        botoncopiar.addEventListener("click", copiar = () => {
+            var contenido = document.querySelector(".text-resultado").textContent;
+            navigator.clipboard.writeText(contenido);
+            console.log("hola");
+        })
+
+    </script>
+</body>
+</html>
